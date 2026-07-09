@@ -57,7 +57,7 @@ export default function Page() {
       <BlogHero
         title="What to Know Before Installing a Home EV Charger in Waco, TX"
         description="Level 2 chargers, amperage, permits, and panel capacity — an honest guide to installing a home EV charger for Central Texas homeowners."
-        imageSrc="/pages/blogs/energy-savings.jpg"
+        imageSrc="/pages/blogs/ev-charger.jpg"
         imageAlt="Home EV charger installation guide for Waco TX"
         category="Installation"
         date="June 24, 2026"

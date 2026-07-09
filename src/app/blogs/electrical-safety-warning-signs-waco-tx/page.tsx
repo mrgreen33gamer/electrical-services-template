@@ -59,7 +59,7 @@ export default function Page() {
       <BlogHero
         title="Electrical Safety Warning Signs Every Waco Homeowner Should Know"
         description="Flickering lights, burning smells, and buzzing outlets are early warnings. Learn which electrical red flags mean call a licensed electrician today."
-        imageSrc="/pages/blogs/ac-replacement.jpg"
+        imageSrc="/pages/blogs/electrical-safety.jpg"
         imageAlt="Electrical safety warning signs for Waco TX homes"
         category="Safety"
         date="June 15, 2026"

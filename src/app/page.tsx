@@ -35,36 +35,42 @@ export default function HomePage() {
       title: "Electrical Repairs",
       body: "Same-day diagnosis on outlets, breakers, switches, and wiring faults. We stock common parts on every truck — most repairs completed in one visit.",
       link: "/services/electrical-repairs",
+      image: "/pages/home/services/service-1.jpg",
     },
     {
       icon: faBolt,
       title: "Panel Upgrades",
       body: "100A to 200A panel replacements, load calculations, and code-compliant upgrades so your home can handle modern demand safely.",
       link: "/services/panel-upgrades",
+      image: "/pages/home/services/service-2.jpg",
     },
     {
       icon: faPlug,
       title: "Wiring & Rewiring",
       body: "Whole-home rewiring, aluminum-to-copper remediation, and new circuit runs for kitchens, shops, and additions.",
       link: "/services/wiring-rewiring",
+      image: "/pages/home/services/service-3.jpg",
     },
     {
       icon: faLightbulb,
       title: "Lighting Installation",
       body: "Recessed cans, outdoor lighting, chandeliers, and smart-switch installs — planned for light, aesthetics, and efficiency.",
       link: "/services/lighting-installation",
+      image: "/pages/home/services/service-4.jpg",
     },
     {
       icon: faCarBattery,
       title: "EV Charger Installation",
       body: "Level 2 home EV charger installs for Tesla, ChargePoint, and all major brands — including dedicated circuits and permits.",
       link: "/services/ev-charger-installation",
+      image: "/pages/home/services/service-1.jpg",
     },
     {
       icon: faServer,
       title: "Generator Installation",
       body: "Standby and portable generator install with automatic transfer switches so your home stays powered through Texas storms.",
       link: "/services/generator-installation",
+      image: "/pages/home/services/service-2.jpg",
     },
   ];
 
@@ -191,13 +197,16 @@ export default function HomePage() {
 
   return (
     <main className={styles.pageWrapper}>
-
       <WelcomePage />
-
       <TrustBar
         headline="Waco's trusted electrical contractor — TECL-licensed, insured, and warrantied on every job"
       />
-
+      <div className={styles.section}>
+        <ServiceCardComponent
+          heading="Complete Electrical Services for Your Home"
+          cards={services}
+        />
+      </div>
       <div className={styles.section}>
         <ImpactMetrics
           title="Numbers That Speak for Us"
@@ -205,14 +214,6 @@ export default function HomePage() {
           cityName="Waco"
         />
       </div>
-
-      <div className={styles.section}>
-        <ServiceCardComponent
-          heading="Complete Electrical Services for Your Home"
-          cards={services}
-        />
-      </div>
-
       <div className={styles.section}>
         <WhyChooseUs
           cityName="Waco"
@@ -220,7 +221,47 @@ export default function HomePage() {
           title="What Makes BrightVolt Different"
         />
       </div>
-
+      <div className={styles.section}>
+        <ProcessTimeline steps={processSteps} />
+      </div>
+      <div className={styles.section}>
+        <Testimonials testimonials={reviews} />
+      </div>
+      <CTABanner
+        headline="Power Out? Panel Overloaded? We're Ready Right Now."
+        subline="Same-day appointments across Waco, Hewitt, Woodway, Temple, and all of Central Texas. Flat-rate pricing. 2-Year Workmanship Warranty."
+        primaryText="Call (254) 715-4400"
+        primaryLink="tel:+12547154400"
+        secondaryText="Book Online"
+        secondaryLink="/contact"
+      />
+      <div className={styles.section}>
+        <GuaranteeSection />
+      </div>
+      <div className={styles.section}>
+        <LocalServiceAreas
+          cityName="Waco"
+          areas={localAreas}
+          servicePath=""
+          title="Serving All of Central Texas"
+        />
+      </div>
+      <div className={styles.section}>
+        <WhatToExpect
+          sectionTitle="Every Service Call, Every Time"
+          expectations={expectations}
+        />
+      </div>
+      <div className={styles.section}>
+        <FAQ
+          cityName="Waco"
+          faq={faq}
+          title="Electrical Questions — Answered Straight"
+        />
+      </div>
+      <div className={styles.section}>
+        <BlogPreviewGrid />
+      </div>
       <div className={styles.section}>
         <Variant4
           title="Request Service or a Free Quote"
@@ -230,56 +271,6 @@ export default function HomePage() {
           formVariant={2}
         />
       </div>
-
-      <div className={styles.section}>
-        <ProcessTimeline steps={processSteps} />
-      </div>
-
-      <div className={styles.section}>
-        <Testimonials testimonials={reviews} />
-      </div>
-
-      <div className={styles.section}>
-        <GuaranteeSection />
-      </div>
-
-      <CTABanner
-        headline="Power Out? Panel Overloaded? We're Ready Right Now."
-        subline="Same-day appointments across Waco, Hewitt, Woodway, Temple, and all of Central Texas. Flat-rate pricing. 2-Year Workmanship Warranty."
-        primaryText="Call (254) 715-4400"
-        primaryLink="tel:+12547154400"
-        secondaryText="Book Online"
-        secondaryLink="/contact"
-      />
-
-      <div className={styles.section}>
-        <LocalServiceAreas
-          cityName="Waco"
-          areas={localAreas}
-          servicePath=""
-          title="Serving All of Central Texas"
-        />
-      </div>
-
-      <div className={styles.section}>
-        <WhatToExpect
-          sectionTitle="Every Service Call, Every Time"
-          expectations={expectations}
-        />
-      </div>
-
-      <div className={styles.section}>
-        <FAQ
-          cityName="Waco"
-          faq={faq}
-          title="Electrical Questions — Answered Straight"
-        />
-      </div>
-
-      <div className={styles.section}>
-        <BlogPreviewGrid />
-      </div>
-
     </main>
   );
 }

@@ -1,44 +1,48 @@
 // src/app/globalVariables.scss
 // ─────────────────────────────────────────────────────────────────────────────
 // BrightVolt Electric — Brand Tokens
+// IDENTITY: Industrial neon control room — pure black + electric cyan
 //
-// THREE DISTINCT FONTS:
-//   $titleFont  → Barlow Condensed  — bold condensed display (hero h1, section titles)
-//   $headerFont → Outfit            — clean geometric sans   (nav, card titles, labels, CTAs)
-//   $textFont   → Inter             — refined humanist sans  (body copy, form text, paragraphs)
-//
-// Usage guide:
-//   h1, .hero headline              → $titleFont  (uppercase, tight tracking)
-//   h2, h3, nav links, btn text     → $headerFont (medium weight, normal case)
-//   p, label, input, small text     → $textFont   (regular/medium weight)
+// FONTS (loaded in layout.tsx via next/font):
+//   $titleFont  → Orbitron         — technical / HUD display
+//   $headerFont → Space Grotesk    — modern geometric UI
+//   $textFont   → IBM Plex Sans    — engineered body copy
 // ─────────────────────────────────────────────────────────────────────────────
 
-$titleFont:  var(--font-barlow-condensed), 'Barlow Condensed', sans-serif;
-$headerFont: var(--font-outfit),           'Outfit',           sans-serif;
-$textFont:   var(--font-inter),            'Inter',            sans-serif;
+$titleFont:  var(--font-title),  'Orbitron',       sans-serif;
+$headerFont: var(--font-header), 'Space Grotesk',  sans-serif;
+$textFont:   var(--font-body),   'IBM Plex Sans',  sans-serif;
 
-// ── Core Palette ─────────────────────────────────────────────────────────────
+// ── Core Palette — near-black + neon cyan ────────────────────────────────────
 $black:      #000000;
-$obsidian:   #0d1b2a;
-$blackflat:  #1a2a3a;
+$obsidian:   #030712;   // pure void black-blue
+$blackflat:  #0b1220;
 $white:      #FFFFFF;
-$offwhite:   #f8fafc;
+$offwhite:   #f1f5f9;   // cool steel wash
 
-// Greys (navy-tinted)
-$darkgrey:   #7a9bb5;
-$grey:       #4a6a85;
-$lightgrey:  #c8d8e8;
+// Greys (cool steel)
+$darkgrey:   #94a3b8;
+$grey:       #64748b;
+$lightgrey:  #cbd5e1;
 
-// Brand Accent — electric cyan
-$orange:     #06b6d4;
-$lightorange:#22d3ee;
-$darkorange: #0e7490;
+// Brand Accent — neon electric cyan (token name $orange kept for compat)
+$orange:     #00d4ff;
+$lightorange:#67e8f9;
+$darkorange: #0891b2;
+
+// Secondary power
+$blue:       #22d3ee;
 
 // Legacy aliases
 $green:      $orange;
 $lightgreen: $lightorange;
 $darkgreen:  $darkorange;
-$blue:       #1e6fa8;
+
+// Shape language — sharp industrial (2–4px)
+$radius-sm:  2px;
+$radius-md:  4px;
+$radius-lg:  8px;
+$radius-pill: 4px;
 
 // Error
-$danger-red: #ef4444;
+$danger-red: #f43f5e;

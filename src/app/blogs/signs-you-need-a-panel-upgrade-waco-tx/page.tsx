@@ -59,7 +59,7 @@ export default function Page() {
       <BlogHero
         title="7 Signs You Need an Electrical Panel Upgrade in Waco, TX"
         description="Tripping breakers, warm panel covers, and aluminum wiring are more than annoyances — they can be safety hazards. Here are the clear signs your panel is outdated or overloaded."
-        imageSrc="/pages/blogs/heat-pump.jpg"
+        imageSrc="/pages/blogs/panel-upgrade.jpg"
         imageAlt="Signs you need an electrical panel upgrade in Waco TX"
         category="Safety"
         date="July 3, 2026"

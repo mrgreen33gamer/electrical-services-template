@@ -12,38 +12,50 @@ interface CTABannerProps {
   secondaryText?: string;
   secondaryLink?:  string;
   spot?:       string;
+  imageSrc?:   string;
+  eyebrow?:    string;
+  badgeA?: string;
+  badgeB?: string;
+  badgeC?: string;
 }
 
+/** BrightVolt  bolt motif, electrical defaults */
 export default function CTABanner({
-  headline      = "Ready to Stay Comfortable Year-Round?",
-  subline   = "Same-day appointments available. Flat-rate pricing — no hidden fees. Call now or grab a free estimate online.",
+  headline      = "Ready for Safer, Smarter Power?",
+  subline   = "Same-day appointments available. Flat-rate pricing  no hidden fees. Call now or grab a free estimate online.",
   primaryText  = "Call (254) 715-4400",
   primaryLink   = "tel:+12547154400",
   secondaryText = "Free Estimate",
   secondaryLink  = "/contact",
   spot = "CTABanner",
+  imageSrc,
+  eyebrow = "Central Texas Electricians Since 2010",
+  badgeA = "No Contracts",
+  badgeB = "2-Yr Warranty",
+  badgeC = "Flat-Rate",
 }: CTABannerProps) {
   const trackEvent = useTrackEvent();
 
   return (
     <section className={styles.banner} aria-label="Call to action">
-      {/* Decorative grid lines */}
+      {imageSrc && (
+        <div className={styles.photoBg} aria-hidden="true">
+          <img src={imageSrc} alt="" className={styles.photoBgImg} />
+          <div className={styles.photoScrim} />
+        </div>
+      )}
+
       <div className={styles.grid} aria-hidden="true" />
 
-      {/* Rotating snowflake bg */}
       <motion.div
-        className={styles.bgFlake}
-        animate={{ rotate: 360 }}
-        transition={{ duration: 90, repeat: Infinity, ease: 'linear' }}
+        className={styles.bgMotif}
+        animate={{ rotate: [0, 8, -8, 0], scale: [1, 1.04, 1] }}
+        transition={{ duration: 6, repeat: Infinity, ease: 'easeInOut' }}
         aria-hidden="true"
       >
-        <svg width="520" height="520" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="0.8" strokeLinecap="round">
-          <line x1="12" y1="2" x2="12" y2="22"/>
-          <line x1="2" y1="12" x2="22" y2="12"/>
-          <polyline points="8 6 12 2 16 6"/>
-          <polyline points="8 18 12 22 16 18"/>
-          <polyline points="6 8 2 12 6 16"/>
-          <polyline points="18 8 22 12 18 16"/>
+        {/* Lightning bolt  electrical */}
+        <svg width="420" height="420" viewBox="0 0 24 24" fill="currentColor">
+          <path d="M13 2L4 14h6l-1 8 9-12h-6l1-8z" opacity="0.9" />
         </svg>
       </motion.div>
 
@@ -57,7 +69,7 @@ export default function CTABanner({
         >
           <span className={styles.eyebrow}>
             <span className={styles.eyebrowDot} />
-            Central Texas Electrical Experts Since 2010
+            {eyebrow}
           </span>
           <h2 className={styles.heading}>{headline}</h2>
           <p className={styles.sub}>{subline}</p>
@@ -95,15 +107,15 @@ export default function CTABanner({
           <div className={styles.badges}>
             <span className={styles.badge}>
               <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round"><polyline points="20 6 9 17 4 12"/></svg>
-              No Contracts
+              {badgeA}
             </span>
             <span className={styles.badge}>
               <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round"><polyline points="20 6 9 17 4 12"/></svg>
-              2-Yr Warranty
+              {badgeB}
             </span>
             <span className={styles.badge}>
               <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round"><polyline points="20 6 9 17 4 12"/></svg>
-              Flat-Rate
+              {badgeC}
             </span>
           </div>
         </motion.div>

@@ -24,14 +24,12 @@ interface SectionProps {
 
 const ServicesPage: React.FC<SectionProps> = ({ direction, variants, handleDragEnd, handleAnimationComplete }) => {
   const services = [
-    // ✅ FIXED: All links updated to real App Router paths
-    { serviceTitle: 'Web Design',           imgSrc: '/pages/home/services/web-design.png?v=1',              imgAlt: 'Web Design Services',           pageLink: '/services/website-design' },
-    { serviceTitle: 'Graphic Design',       imgSrc: '/pages/home/services/graphic-services.png?v=1',        imgAlt: 'Graphic Design Services',       pageLink: '/services/graphic-design' },
-    { serviceTitle: 'Data Engineering',     imgSrc: '/pages/home/services/data-services.png?v=1',           imgAlt: 'Data Engineering Services',     pageLink: '/services/software-engineering' },
-    { serviceTitle: 'Software Engineering', imgSrc: '/pages/home/services/software-services.png?v=1',       imgAlt: 'Software Engineering Services', pageLink: '/services/software-engineering' },
-    { serviceTitle: 'Mobile Apps',          imgSrc: '/pages/home/services/mobile-apps-services.png?v=1',    imgAlt: 'Mobile Apps Services',          pageLink: '/services/software-engineering' },
-    { serviceTitle: '3D Modeling',          imgSrc: '/pages/home/services/3d-modeling.png?v=3',             imgAlt: '3D Modeling Services',          pageLink: '/services/graphic-design' },
-    { serviceTitle: 'Digital Marketing',    imgSrc: '/pages/home/services/digital-marketing-services.png?v=1', imgAlt: 'Digital Marketing Services', pageLink: '/services/marketing-solutions' },
+    { serviceTitle: 'Electrical Repairs', imgSrc: '/pages/home/services/repair.jpg',      imgAlt: 'Electrical repairs', pageLink: '/services/electrical-repairs' },
+    { serviceTitle: 'Panel Upgrades',     imgSrc: '/pages/home/services/panel.jpg',       imgAlt: 'Panel upgrades',     pageLink: '/services/panel-upgrades' },
+    { serviceTitle: 'Wiring',             imgSrc: '/pages/home/services/install.jpg',     imgAlt: 'Wiring and rewiring', pageLink: '/services/wiring-rewiring' },
+    { serviceTitle: 'Lighting',           imgSrc: '/pages/home/services/lighting.jpg',    imgAlt: 'Lighting install',   pageLink: '/services/lighting-installation' },
+    { serviceTitle: 'EV Chargers',        imgSrc: '/pages/home/services/ev-charger.jpg',  imgAlt: 'EV charger install', pageLink: '/services/ev-charger-installation' },
+    { serviceTitle: 'Generators',         imgSrc: '/pages/home/services/commercial.jpg',  imgAlt: 'Generator install',  pageLink: '/services/generator-installation' },
   ];
 
   const numServices = services.length;

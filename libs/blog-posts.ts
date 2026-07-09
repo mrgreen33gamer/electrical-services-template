@@ -19,7 +19,7 @@ const ALL_POSTS: BlogPost[] = [
     category: 'Safety',
     date:     'July 3, 2026',
     readTime: 7,
-    imageSrc: '/pages/blogs/heat-pump.jpg',
+    imageSrc: '/pages/blogs/panel-upgrade.jpg',
     imageAlt: 'Signs you need an electrical panel upgrade in Waco TX',
     featured: true,
   },
@@ -30,7 +30,7 @@ const ALL_POSTS: BlogPost[] = [
     category: 'Installation',
     date:     'June 24, 2026',
     readTime: 6,
-    imageSrc: '/pages/blogs/energy-savings.jpg',
+    imageSrc: '/pages/blogs/ev-charger.jpg',
     imageAlt: 'Home EV charger installation guide for Waco TX',
   },
   {
@@ -40,7 +40,7 @@ const ALL_POSTS: BlogPost[] = [
     category: 'Safety',
     date:     'June 15, 2026',
     readTime: 8,
-    imageSrc: '/pages/blogs/ac-replacement.jpg',
+    imageSrc: '/pages/blogs/electrical-safety.jpg',
     imageAlt: 'Electrical safety warning signs for Waco TX homes',
   },
 ];
