@@ -124,7 +124,7 @@ export const metadata: Metadata = {
     siteName: "BrightVolt Electric",
     images: [
       {
-        url: `${BASE_URL}/logos/scott-apps-banner.png?v=1`,
+        url: `${BASE_URL}/pages/home/welcome/hero-main.jpg`,
         width: 1200,
         height: 630,
         alt: "BrightVolt Electric — Waco TX Electrical Contractor",
@@ -138,7 +138,7 @@ export const metadata: Metadata = {
     title: "BrightVolt Electric | Waco TX Electrical Contractor",
     description:
       "Panel upgrades, wiring, lighting, EV chargers & generator installation for Central Texas. TECL-licensed & insured — no contracts.",
-    images: [`${BASE_URL}/logos/scott-apps-banner.png?v=1`],
+    images: [`${BASE_URL}/pages/home/welcome/hero-main.jpg`],
   },
   robots: {
     index: true,
