@@ -1,4 +1,6 @@
-// Electrical Hero — Live Panel + Voltage Ring
+// Electrical Hero — BrightVolt (industrial neon control room)
+// Photographic parallax stage + authentic electrician spec card.
+// Obsidian void, electric-cyan detailing, Orbitron uppercase headline.
 @use '../../../../src/app/globalVariables.scss' as *;
 
 .hero {
@@ -6,72 +8,83 @@
   min-height: 100svh;
   background: $obsidian;
   overflow: hidden;
-}
+  display: flex;
+  align-items: center;
+  isolation: isolate;
 
-.panelBg {
-  position: absolute;
-  inset: 0;
-  z-index: 0;
-}
-
-.panelBgImg {
-  position: absolute;
-  top: 0;
-  right: 0;
-  width: 58%;
-  height: 100%;
-  object-fit: cover;
-  object-position: center;
-  opacity: 0.38;
-  filter: saturate(0.7) contrast(1.1);
-  @media (max-width: 960px) {
-    width: 100%;
-    opacity: 0.22;
+  // Fine grain / tooth so the dark reads as material, not flat black.
+  // Sits above the photo + scrim, below the content.
+  &::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    z-index: 2;
+    opacity: 0.4;
+    pointer-events: none;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='140' height='140'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.035'/%3E%3C/svg%3E");
   }
 }
 
-.panelScrim {
+// ── Photographic parallax background ──────────────────────────────────────────
+.bgLayer {
   position: absolute;
-  inset: 0;
-  background:
-    linear-gradient(90deg, $obsidian 0%, $obsidian 38%, rgba($obsidian, 0.55) 70%, rgba($obsidian, 0.75) 100%),
-    radial-gradient(ellipse at 75% 40%, rgba($orange, 0.14), transparent 55%);
-}
-
-.gridLines {
-  position: absolute;
-  inset: 0;
-  background-image:
-    linear-gradient(rgba($orange, 0.04) 1px, transparent 1px),
-    linear-gradient(90deg, rgba($orange, 0.04) 1px, transparent 1px);
-  background-size: 48px 48px;
-  mask-image: radial-gradient(ellipse at 70% 50%, black 20%, transparent 70%);
-  pointer-events: none;
-}
-
-.particleCanvas {
-  position: absolute;
-  inset: 0;
+  top: -8%;
+  left: 0;
   width: 100%;
-  height: 100%;
+  height: 116%;
+  z-index: 0;
+  will-change: transform;
+}
+
+.bgImage {
+  object-fit: cover;
+  object-position: center 46%;
+}
+
+// Electric-cyan / obsidian scrim — keeps the dusk photo on-brand and the
+// headline legible. Darker on the left (text column), lighter on the right.
+.scrim {
+  position: absolute;
+  inset: 0;
   z-index: 1;
   pointer-events: none;
+  background:
+    radial-gradient(120% 90% at 82% 18%, rgba(0, 212, 255, 0.18) 0%, rgba(0, 212, 255, 0) 55%),
+    radial-gradient(90% 80% at 8% 96%, rgba(0, 212, 255, 0.1) 0%, rgba(0, 212, 255, 0) 60%),
+    linear-gradient(100deg, rgba(3, 7, 18, 0.96) 0%, rgba(3, 7, 18, 0.86) 42%, rgba(3, 7, 18, 0.56) 74%, rgba(3, 7, 18, 0.4) 100%),
+    linear-gradient(180deg, rgba(3, 7, 18, 0.4) 0%, rgba(3, 7, 18, 0) 30%, rgba(3, 7, 18, 0.6) 100%);
+}
+
+// Faint HUD grid so the void keeps its industrial signature over the photo.
+.hero::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  pointer-events: none;
+  background-image:
+    linear-gradient(rgba(0, 212, 255, 0.04) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(0, 212, 255, 0.04) 1px, transparent 1px);
+  background-size: 48px 48px;
+  mask-image: radial-gradient(ellipse at 72% 46%, black 18%, transparent 72%);
 }
 
 .layout {
   position: relative;
-  z-index: 2;
+  z-index: 3;
   max-width: 1380px;
+  width: 100%;
   margin: 0 auto;
-  padding: clamp(5.5rem, 10vh, 8.5rem) clamp(1.5rem, 5vw, 5rem) clamp(3.5rem, 7vh, 5.5rem);
+  padding: clamp(6rem, 11vh, 9rem) clamp(1.5rem, 5vw, 5rem) clamp(4rem, 8vh, 6rem);
   display: grid;
-  grid-template-columns: minmax(0, 1.05fr) minmax(280px, 400px);
-  gap: clamp(2rem, 5vw, 4.5rem);
+  grid-template-columns: minmax(0, 1fr) minmax(300px, 440px);
+  gap: clamp(2rem, 4vw, 4.5rem);
   align-items: center;
 
   @media (max-width: 960px) {
     grid-template-columns: 1fr;
     text-align: center;
+    gap: 2.5rem;
   }
 }
 
@@ -93,11 +106,11 @@
   font-weight: 700;
   letter-spacing: 0.12em;
   text-transform: uppercase;
-  color: #67e8f9;
-  border: 1px solid rgba($orange, 0.4);
+  color: $lightorange;
+  border: 1px solid rgba($orange, 0.42);
   background: rgba($orange, 0.1);
-  border-radius: 4px;
-  padding: 0.4rem 0.9rem;
+  border-radius: $radius-pill;
+  padding: 0.42rem 0.95rem;
   width: fit-content;
   font-variant-numeric: tabular-nums;
 }
@@ -108,6 +121,7 @@
   border-radius: 1px;
   background: $orange;
   box-shadow: 0 0 10px rgba($orange, 0.9);
+  flex-shrink: 0;
   animation: pulse 1.6s ease-in-out infinite;
 }
 
@@ -123,33 +137,39 @@
 
 .headline {
   font-family: $titleFont;
-  font-size: clamp(2.2rem, 4.4vw, 3.8rem);
+  font-size: clamp(2.4rem, 4.8vw, 4.2rem);
   font-weight: 700;
-  line-height: 1.05;
-  letter-spacing: 0.06em;
+  line-height: 1.04;
+  letter-spacing: 0.05em;
   text-transform: uppercase;
   color: $white;
   margin: 0;
+  text-wrap: balance;
 }
 
 .accentLine {
   color: $orange;
-  text-shadow: 0 0 40px rgba($orange, 0.35);
+  text-shadow: 0 0 40px rgba($orange, 0.4);
 }
 
 .sub {
   font-family: $textFont;
-  font-size: clamp(0.98rem, 1.3vw, 1.12rem);
-  line-height: 1.55;
-  color: rgba($white, 0.68);
-  max-width: 34rem;
+  font-size: clamp(1rem, 1.25vw, 1.14rem);
+  line-height: 1.6;
+  color: rgba($white, 0.74);
+  max-width: 36rem;
   margin: 0;
+  @media (max-width: 960px) {
+    max-width: 40ch;
+  }
 }
 
 .ctaRow {
   display: flex;
   flex-wrap: wrap;
-  gap: 0.75rem;
+  gap: 0.8rem;
+  align-items: center;
+  margin-top: 0.5rem;
   @media (max-width: 960px) {
     justify-content: center;
   }
@@ -160,37 +180,39 @@
   align-items: center;
   gap: 0.5rem;
   font-family: $headerFont;
-  font-size: 0.92rem;
+  font-size: 0.95rem;
   font-weight: 700;
   color: #041016;
-  background: $orange;
+  background: linear-gradient(180deg, $lightorange 0%, $orange 100%);
   text-decoration: none;
-  padding: 0.85rem 1.35rem;
-  border-radius: 4px;
-  box-shadow: 0 0 24px rgba($orange, 0.35);
-  transition: transform 0.16s, box-shadow 0.16s;
+  padding: 0.92rem 1.5rem;
+  border-radius: $radius-lg;
+  box-shadow: 0 1px 0 rgba(255, 255, 255, 0.35) inset, 0 0 28px rgba($orange, 0.35);
+  transition: transform 0.18s ease, box-shadow 0.18s ease, filter 0.18s ease;
   &:hover {
-    transform: translateY(-1px);
-    box-shadow: 0 0 32px rgba($orange, 0.5);
+    transform: translateY(-2px);
+    filter: brightness(1.05);
+    box-shadow: 0 1px 0 rgba(255, 255, 255, 0.45) inset, 0 0 38px rgba($orange, 0.5);
   }
 }
 
 .ctaSecondary {
   display: inline-flex;
   align-items: center;
-  gap: 0.4rem;
+  gap: 0.45rem;
   font-family: $headerFont;
   font-size: 0.92rem;
-  font-weight: 700;
-  color: rgba($white, 0.88);
+  font-weight: 600;
+  color: rgba($white, 0.9);
   text-decoration: none;
-  padding: 0.85rem 1.2rem;
-  border-radius: 4px;
+  padding: 0.92rem 1.35rem;
+  border-radius: $radius-lg;
   border: 1px solid rgba($orange, 0.35);
   background: rgba($orange, 0.06);
-  transition: background 0.18s, border-color 0.18s;
+  transition: border-color 0.18s, color 0.18s, background 0.18s;
   &:hover {
     border-color: rgba($orange, 0.6);
+    color: $white;
     background: rgba($orange, 0.12);
   }
 }
@@ -199,6 +221,7 @@
   display: flex;
   flex-wrap: wrap;
   gap: 0.45rem;
+  margin-top: 0.4rem;
   @media (max-width: 960px) {
     justify-content: center;
   }
@@ -213,466 +236,156 @@
   font-weight: 600;
   letter-spacing: 0.05em;
   text-transform: uppercase;
-  color: rgba($white, 0.55);
+  color: rgba($white, 0.6);
   padding: 0.32rem 0.65rem;
-  border-radius: 3px;
-  border: 1px solid rgba($white, 0.1);
-  background: rgba($white, 0.03);
+  border-radius: $radius-sm;
+  border: 1px solid rgba($white, 0.12);
+  background: rgba($white, 0.04);
   svg {
     color: $orange;
+    flex-shrink: 0;
   }
 }
 
-// Horizontal job photo rail
-.jobRail {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 0.7rem;
-  margin-top: 0.5rem;
-  max-width: 460px;
-  @media (max-width: 960px) {
-    max-width: 100%;
-  }
-}
-
-.jobCard {
-  margin: 0;
+// ── Authentic electrician photo card (replaces the voltage-ring dial) ─────────
+.visual {
   position: relative;
-  border-radius: 6px;
-  overflow: hidden;
-  aspect-ratio: 1 / 1;
-  border: 1px solid rgba($orange, 0.25);
-  box-shadow: 0 0 0 1px rgba(0, 0, 0, 0.4), 0 12px 28px rgba(0, 0, 0, 0.45);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 340px;
 }
 
-.jobImg {
+.photoCard {
+  position: relative;
   width: 100%;
-  height: 100%;
-  object-fit: cover;
-  display: block;
-  filter: saturate(0.9);
-  transition: transform 0.35s ease;
-  .jobCard:hover & {
-    transform: scale(1.06);
-  }
+  max-width: 440px;
+  aspect-ratio: 4 / 5;
+  border-radius: $radius-lg;
+  overflow: hidden;
+  border: 1px solid rgba($orange, 0.3);
+  box-shadow:
+    0 1px 0 rgba(255, 255, 255, 0.12) inset,
+    0 30px 60px -20px rgba(0, 0, 0, 0.75),
+    0 0 0 6px rgba(0, 212, 255, 0.06);
 }
 
-.jobCaption {
+.photo {
+  object-fit: cover;
+  object-position: center;
+  filter: saturate(0.95);
+}
+
+// Cyan-to-shadow glaze so the overlays stay readable and it reads as designed
+.photoGlaze {
   position: absolute;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  padding: 0.4rem 0.5rem;
+  inset: 0;
+  background:
+    linear-gradient(180deg, rgba(3, 7, 18, 0) 42%, rgba(3, 7, 18, 0.78) 100%),
+    linear-gradient(300deg, rgba(0, 212, 255, 0.16) 0%, rgba(0, 212, 255, 0) 46%);
+}
+
+.photoBadge {
+  position: absolute;
+  top: 0.9rem;
+  left: 0.9rem;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
   font-family: $textFont;
   font-size: 0.62rem;
   font-weight: 700;
-  letter-spacing: 0.1em;
-  text-transform: uppercase;
-  color: #a5f3fc;
-  background: linear-gradient(transparent, rgba(6, 10, 16, 0.92));
-}
-
-.visual {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
-
-.dialCard {
-  width: 100%;
-  max-width: 360px;
-  padding: 1.4rem 1.35rem 1.2rem;
-  border-radius: 12px;
-  background: linear-gradient(160deg, rgba(12, 22, 32, 0.92), rgba(6, 12, 18, 0.96));
-  border: 1px solid rgba($orange, 0.28);
-  box-shadow:
-    0 0 0 1px rgba(0, 0, 0, 0.5),
-    0 24px 60px rgba(0, 0, 0, 0.5),
-    inset 0 1px 0 rgba($orange, 0.12);
-  backdrop-filter: blur(12px);
-}
-
-.dialHeader {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  margin-bottom: 0.5rem;
-}
-
-.dialEyebrow {
-  font-family: $textFont;
-  font-size: 0.68rem;
-  font-weight: 700;
-  letter-spacing: 0.14em;
-  text-transform: uppercase;
-  color: rgba($white, 0.45);
-}
-
-.dialOnline {
-  font-family: $textFont;
-  font-size: 0.65rem;
-  font-weight: 800;
   letter-spacing: 0.12em;
-  color: #4ade80;
-  border: 1px solid rgba(74, 222, 128, 0.35);
-  background: rgba(74, 222, 128, 0.1);
-  padding: 0.2rem 0.5rem;
-  border-radius: 3px;
-}
-
-.voltageRing {
-  position: relative;
-  width: 220px;
-  height: 220px;
-  margin: 0.4rem auto 1rem;
-}
-
-.ringSvg {
-  width: 100%;
-  height: 100%;
-  transform: rotate(135deg);
-}
-
-.ringTrack {
-  fill: none;
-  stroke: rgba($white, 0.08);
-  stroke-width: 10;
-  stroke-linecap: round;
-  stroke-dasharray: 414 550; // ~75% arc
-}
-
-.ringFill {
-  fill: none;
-  stroke: $orange;
-  stroke-width: 10;
-  stroke-linecap: round;
-  filter: drop-shadow(0 0 8px rgba($orange, 0.55));
-}
-
-.ringCenter {
-  position: absolute;
-  inset: 0;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  gap: 0.1rem;
-  pointer-events: none;
-}
-
-.ringValue {
-  font-family: $titleFont;
-  font-size: 3rem;
-  font-weight: 800;
+  text-transform: uppercase;
   color: $white;
-  line-height: 1;
-  letter-spacing: -0.03em;
+  background: rgba(3, 7, 18, 0.66);
+  backdrop-filter: blur(6px);
+  border: 1px solid rgba($orange, 0.32);
+  border-radius: $radius-pill;
+  padding: 0.4rem 0.85rem;
 }
 
-.ringUnit {
-  font-family: $textFont;
-  font-size: 0.75rem;
-  font-weight: 700;
-  letter-spacing: 0.16em;
-  color: $orange;
-  text-transform: uppercase;
-}
-
-.ringStatus {
-  display: inline-flex;
-  align-items: center;
-  gap: 0.35rem;
-  margin-top: 0.35rem;
-  font-family: $textFont;
-  font-size: 0.65rem;
-  font-weight: 700;
-  letter-spacing: 0.12em;
-  text-transform: uppercase;
-  color: rgba($white, 0.5);
-}
-
-.liveDot {
+.photoBadgeDot {
   width: 6px;
   height: 6px;
-  border-radius: 50%;
-  background: #4ade80;
-  box-shadow: 0 0 8px #4ade80;
-  animation: pulse 1.4s ease-in-out infinite;
+  border-radius: 1px;
+  background: $orange;
+  box-shadow: 0 0 8px 1px rgba($orange, 0.85);
+  flex-shrink: 0;
 }
 
-.statList {
-  list-style: none;
-  margin: 0;
-  padding: 0;
+.specCard {
+  position: absolute;
+  left: 0.9rem;
+  right: 0.9rem;
+  bottom: 0.9rem;
   display: flex;
   flex-direction: column;
   gap: 0.45rem;
-  border-top: 1px solid rgba($white, 0.08);
-  padding-top: 0.85rem;
+  padding: 0.85rem 1rem;
+  border-radius: $radius-md;
+  background: rgba(3, 7, 18, 0.64);
+  backdrop-filter: blur(8px);
+  border: 1px solid rgba($orange, 0.24);
 }
 
-.statRow {
-  display: flex;
-  justify-content: space-between;
+.specRow {
+  display: inline-flex;
   align-items: center;
-  padding: 0.45rem 0.55rem;
-  border-radius: 4px;
-  background: rgba($white, 0.03);
-  border: 1px solid rgba($white, 0.06);
-}
+  gap: 0.55rem;
+  font-family: $headerFont;
+  font-size: 0.82rem;
+  font-weight: 500;
+  color: rgba($white, 0.92);
 
-.statLabel {
-  font-family: $textFont;
-  font-size: 0.68rem;
-  font-weight: 600;
-  letter-spacing: 0.06em;
-  text-transform: uppercase;
-  color: rgba($white, 0.5);
-}
-
-.statValue {
-  font-family: $titleFont;
-  font-size: 1.05rem;
-  font-weight: 800;
-  color: $orange;
-}
-
-/* === UNIQUENESS IDENTITY LAYER — electrical-services-template === */
-/* Auto-generated visual identity so shared archetypes diverge per brand. */
-
-.hero {
-  min-height: 88svh !important;
-  height: auto !important;
-}
-
-.layout {
-  grid-template-columns: minmax(0, 1.02fr) 1fr !important;
-  gap: clamp(1.86rem, 4vw, 3.3600000000000003rem) !important;
-  padding-top: clamp(5.86rem, 11vh, 7.86rem) !important;
-}
-
-.shard {
-  clip-path: polygon(12% 0%, 100% 0%, 100% 100%, 0% 100%) !important;
-  opacity: 0.95 !important;
-}
-
-.headline {
-  letter-spacing: 0.06em !important;
-  text-transform: uppercase !important;
-  font-weight: 700 !important;
-  transform: skewX(-0.5deg);
-}
-
-.badge {
-  border-radius: 16px !important;
-}
-
-.chip {
-  border-radius: 4px !important;
-}
-
-.ctaPrimary,
-.ctaSecondary {
-  border-radius: 8px !important;
-}
-
-.visual {
-  transform: scale(0.965);
-}
-
-.statCard,
-.console,
-.dialCard,
-.baFrame,
-.tile,
-.jobCard,
-.stripCard,
-.metricBar {
-  box-shadow: 0 8px 24px rgba(0,0,0,0.35) !important;
-}
-
-/* end identity layer */
-
-/* === HERO PATTERN UNIQUENESS — electrical-services-template === */
-.hero {
-  &::before {
-    content: '' !important;
-    position: absolute !important;
-    inset: 0 !important;
-    background-image: radial-gradient(circle at 20% 30%, rgba($orange, 0.06) 0 1px, transparent 2px),
-      radial-gradient(circle at 70% 60%, rgba($white, 0.04) 0 1px, transparent 2px),
-      radial-gradient(circle at 40% 80%, rgba($orange, 0.05) 0 1.5px, transparent 2.5px) !important;
-    background-size: 48px 48px !important;
-    opacity: 0.79 !important;
-    pointer-events: none !important;
-    z-index: 0 !important;
-  }
-
-  &::after {
-    content: '' !important;
-    position: absolute !important;
-    inset: 0 !important;
-    background-image: radial-gradient(ellipse 50% 40% at 10% 38%, rgba($orange, 0.075), transparent 70%), radial-gradient(ellipse 40% 50% at 86% 60%, rgba($white, 0.03), transparent 65%) !important;
-    pointer-events: none !important;
-    z-index: 0 !important;
+  svg {
+    color: $lightorange;
+    flex-shrink: 0;
   }
 }
-/* end hero pattern */
 
-/* === MOBILE HERO FOLD SAFETY (fleet QA) === */
+@media (max-width: 960px) {
+  .visual {
+    min-height: 0;
+    margin-top: 0.25rem;
+  }
+  .photoCard {
+    max-width: 360px;
+    aspect-ratio: 4 / 3;
+  }
+}
+
 @media (max-width: 640px) {
-  .hero,
-  .section,
-  .welcome {
+  .hero {
     min-height: 100svh;
-    height: auto !important;
-  }
-  .headline,
-  .title,
-  .heroTitle {
-    font-size: clamp(2.05rem, 9vw, 2.85rem) !important;
-    line-height: 1.05 !important;
-  }
-  .layout,
-  .heroInner,
-  .contentWrap {
-    gap: 1.25rem !important;
-    padding-bottom: 2rem !important;
-  }
-  .ctaRow,
-  .actions,
-  .heroCtas {
-    flex-wrap: wrap;
-    justify-content: center;
-  }
-  .visual,
-  .heroVisual,
-  .meter,
-  .statGrid {
-    min-height: 0 !important;
-  }
-}
-
-/* === TABLET + MOBILE HERO VISUAL DEFER (fleet QA) === */
-/* Hide side dials/meters on tablet & phone so the hero fold stays clean */
-@media (max-width: 960px) {
-  .visual,
-  .heroVisual,
-  .meterWrap,
-  .rightCol,
-  .heroArt {
-    display: none !important;
-  }
-}
-
-/* === MOBILE HERO COPY TIGHTEN (fleet QA) === */
-@media (max-width: 640px) {
-  .sub,
-  .heroSub,
-  .description {
-    font-size: 0.9rem !important;
-    line-height: 1.45 !important;
-    max-width: 34ch !important;
-  }
-  .chips {
-    display: none !important; /* trust chips below fold on phone — CTAs first */
-  }
-}
-
-/* === MOBILE SINGLE COLUMN FORCE (fleet QA) === */
-@media (max-width: 960px) {
-  .layout,
-  .heroLayout,
-  .grid {
-    grid-template-columns: 1fr !important;
-  }
-}
-@media (max-width: 640px) {
-  .hero,
-  .section {
-    height: auto !important;
-    min-height: 100svh !important;
-    overflow: visible !important;
+    height: auto;
   }
   .layout {
-    padding-top: 5rem !important;
-    padding-bottom: 2rem !important;
+    padding-top: 5.5rem;
+    padding-bottom: 2.5rem;
+    gap: 1.5rem;
   }
-}
-
-/* === MOBILE WELCOME STACK (fleet QA) === */
-/* Kill side-by-side hero chrome on phone: stack CTAs, rails, collages, dials */
-@media (max-width: 640px) {
-  .ctaRow,
-  .actions,
-  .heroCtas {
-    flex-direction: column !important;
-    align-items: stretch !important;
-    width: 100% !important;
-    max-width: 22rem !important;
-    margin-left: auto !important;
-    margin-right: auto !important;
+  .headline {
+    font-size: clamp(2.05rem, 9vw, 2.85rem);
+    line-height: 1.05;
   }
-
+  .sub {
+    font-size: 0.92rem;
+    line-height: 1.45;
+    max-width: 34ch;
+  }
+  .ctaRow {
+    flex-direction: column;
+    align-items: stretch;
+    width: 100%;
+    max-width: 22rem;
+    margin-left: auto;
+    margin-right: auto;
+  }
   .ctaPrimary,
-  .ctaSecondary,
-  .ctaRow a,
-  .ctaRow button {
-    width: 100% !important;
-    justify-content: center !important;
-    box-sizing: border-box !important;
-  }
-
-  .jobRail,
-  .jobStrip,
-  .shotRail {
-    display: grid !important;
-    grid-template-columns: 1fr !important;
-    gap: 0.65rem !important;
-    width: 100% !important;
-    max-width: 22rem !important;
-    margin: 0 auto !important;
-  }
-
-  .collageGrid,
-  .collage {
-    grid-template-columns: 1fr !important;
-    grid-template-rows: auto !important;
-    min-height: 0 !important;
-    max-width: 22rem !important;
-    width: 100% !important;
-  }
-
-  .tileMain,
-  .tileSide,
-  .tile {
-    grid-column: auto !important;
-    grid-row: auto !important;
-    min-height: 140px !important;
-  }
-
-  .plantDialGrid {
-    grid-template-columns: 1fr 1fr !important;
-    max-width: 100% !important;
-  }
-
-  .scanCard {
-    grid-template-columns: 1fr !important;
-    gap: 0.35rem !important;
-  }
-
-  .scanRight {
-    align-items: flex-start !important;
-  }
-
-  .materials,
-  .matGrid,
-  .swatchGrid {
-    grid-template-columns: 1fr 1fr !important;
-  }
-
-  .statGrid,
-  .statsRow {
-    grid-template-columns: 1fr 1fr !important;
+  .ctaSecondary {
+    width: 100%;
+    justify-content: center;
+    box-sizing: border-box;
   }
 }
